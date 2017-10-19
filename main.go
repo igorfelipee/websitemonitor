@@ -4,20 +4,15 @@ package main
 
 import (
   "html/template"
-  "io/ioutil"
   "net/http"
   "os"
 )
 
 
-func home(w http.ResponseWriter, r *http.Requestm ){
+func home(w http.ResponseWriter, r *http.Request ){
   t := template.New("/views/index.html")
 
-  t, err := t.ParseFiles("/views/index.html")
-
-  if err!=nil{
-      log.Println(err)
-  }
+  t, _ := t.ParseFiles("/views/index.html")
   t.Execute(w)
 }
 
