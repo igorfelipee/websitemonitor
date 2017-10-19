@@ -1,0 +1,11 @@
+.f-div{
+  display: flex;
+  flex-direction: column;
+}
+.a-middle{
+  align-items: center;
+  justify-content: center;
+}
+.h-all{
+  height: 100vh;
+}
