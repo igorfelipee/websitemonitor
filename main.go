@@ -5,28 +5,17 @@ package main
 import (
   "html/template"
   "net/http"
-  "os"
 )
 
-type Page struct {
-    Title string
-}
-
 func home(w http.ResponseWriter, r *http.Request ){
-  page := Page{"Index"}
-  tmpl, err := template.ParseFiles("views/index.html")
-  if err != nil {
-      panic(err)
-  }
-  err = tmpl.ExecuteTemplate(os.Stdout, "views/index.html", page)
-  if err != nil {
-      panic(err)
-  }
+  t, _ := template.ParseFiles("./views/index.html")
+  token:= 1234
+  t.Execute(w, token)
 }
 
 func main() {
-  port := os.Getenv("PORT")
+  //port := os.Getenv("PORT")
   http.HandleFunc("/", home)
-  http.ListenAndServe(":"+port, nil)
+  http.ListenAndServe(":8080", nil)
 
 }
