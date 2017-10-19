@@ -9,14 +9,16 @@ import (
   "os"
 )
 
-func home(w http.ResponseWriter, r *http.Request){
-  title := r.URL.Path[len("/"):]
-    p, err := loadPage(title)
-    if err != nil {
-        p = &Page{Title: title}
-    }
-    t, _ := template.ParseFiles("index.html")
-    t.Execute(w, p)
+
+func home(w http.ResponseWriter, r *http.Requestm ){
+  t := template.New("/views/index.html")
+
+  t, err := t.ParseFiles("/views/index.html")
+
+  if err!=nil{
+      log.Println(err)
+  }
+  t.Execute(w)
 }
 
 func main() {
