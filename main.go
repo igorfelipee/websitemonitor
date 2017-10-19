@@ -3,14 +3,19 @@
 package main
 
 import (
-
+  "html/template"
   "net/http"
-  "io"
   "os"
 )
 
 func home(w http.ResponseWriter, r *http.Request){
-  io.WriteString(w, "Hello, World!")
+  title := r.URL.Path[len("/"):]
+    p, err := loadPage(title)
+    if err != nil {
+        p = &Page{Title: title}
+    }
+    t, _ := template.ParseFiles("index.html")
+    t.Execute(w, p)
 }
 
 func main() {
