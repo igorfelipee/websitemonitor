@@ -1,5 +1,9 @@
 {
 	"comment": "",
+	"heroku": {
+		"install" : [ "./..." ],
+		"goVersion": "go1.6"
+		 },
 	"ignore": "test",
 	"package": [],
 	"rootPath": "hello"
