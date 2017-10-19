@@ -5,6 +5,7 @@ package main
 import (
   "html/template"
   "net/http"
+  "os"
 )
 
 func home(w http.ResponseWriter, r *http.Request ){
