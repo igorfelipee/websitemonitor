@@ -8,12 +8,20 @@ import (
   "os"
 )
 
+type Page struct {
+    Title string
+}
 
 func home(w http.ResponseWriter, r *http.Request ){
-  t := template.New("/views/index.html")
-
-  t, _ := t.ParseFiles("/views/index.html")
-  t.Execute(w)
+  page := Page{"Index"}
+  tmpl, err := template.ParseFiles("views/index.html")
+  if err != nil {
+      panic(err)
+  }
+  err = tmpl.ExecuteTemplate(os.Stdout, "views/index.html", page)
+  if err != nil {
+      panic(err)
+  }
 }
 
 func main() {
